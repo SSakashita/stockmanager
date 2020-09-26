@@ -1,9 +1,11 @@
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from . import forms
+
 
 class MyLoginView(LoginView):
     form_class = forms.LoginForm
