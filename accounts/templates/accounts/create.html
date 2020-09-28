@@ -1,3 +1,5 @@
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,12 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <p>新規ユーザーの作成</p>
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">作成</button>
-    </form>
-    <a href="{% url 'login' %}"><button type="submit">ログイン画面に戻る</button></a>
+    <div class="col-12 cl-lg-8"><p>新規ユーザーの作成</p>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">作成</button>
+        </form>
+        <a href="{% url 'login' %}"><button type="submit">ログイン画面に戻る</button></a>
+    </div>
 </body>
 </html>
