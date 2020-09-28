@@ -1,0 +1,11 @@
+{% extends 'stock/base.html' %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% block content %}
+<h1>アイテム登録</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ formset }}
+    <button type="submit">登録</button>
+</form>
+{% endblock %}
