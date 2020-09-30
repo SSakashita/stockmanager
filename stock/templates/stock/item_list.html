@@ -1,0 +1,28 @@
+{% extends 'stock/base.html' %}
+{% bootstrap_css %}
+{% block content %}
+
+<h1>在庫リスト</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>アイテム名</th>
+      <th>個数</th>
+    </tr>
+  </thead>
+{% for iten in items %}
+    <tbody>
+      <tr class="table-info">
+        <th scope="row">{{ item.id }}</th>
+        <td>{{item.name}}</td>
+      </tr>
+      <tr>
+        <td>{{ item.quantity }}</td>
+      </tr>
+    </tbody>
+  </table>
+{% endfor %}
+
+{% endblock %}

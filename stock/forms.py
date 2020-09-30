@@ -8,4 +8,4 @@ class AddItemForm(forms.ModelForm):
       model =Item
       fields = ('name', 'category', 'quantity', 'price')
 
-#AddItemsFormset = forms.inlineformset_factory(Item, AddItemForm, extra=0)
+# AddItemsFormset = forms.inlineformset_factory(Item, AddItemForm, extra=1, max_num=30)
