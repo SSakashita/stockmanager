@@ -12,8 +12,8 @@
       <th>個数</th>
     </tr>
   </thead>
-{% for iten in items %}
     <tbody>
+    {% for iten in items %}
       <tr class="table-info">
         <th scope="row">{{ item.id }}</th>
         <td>{{item.name}}</td>
@@ -21,8 +21,8 @@
       <tr>
         <td>{{ item.quantity }}</td>
       </tr>
+    {% endfor %}
     </tbody>
   </table>
-{% endfor %}
 
 {% endblock %}

@@ -1,15 +1,17 @@
 from django.shortcuts import render, redirect
 from django import forms
+from django.utils import timezone
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 # from .forms import AddItemsFormSet
-from .models import Item
+from .models import Item, Category
 
 
 @login_required
 def index(request):
-  return render(request, 'stock/index.html')
+  categorys = Category.objects.all()
+  return render(request, 'stock/index.html', {'categorys':categorys})
 
 
 # @login_required
@@ -46,3 +48,15 @@ def item_list(request):
 @login_required
 def stock_setting(request):
   return render(request, 'stock/setting.html')
+
+
+@login_required
+def setting_category(request):
+  categorys = Category.objects.all()
+  return render(request, 'stock/setting_category.html',{'categorys': categorys})
+
+
+@login_required
+def category_new(request):
+  return render(request, 'stock/category_new.html')
+

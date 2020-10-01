@@ -6,4 +6,6 @@ urlpatterns = [
     path('items/new/', views.items_new, name='items_new'),
     path('list', views.item_list, name='item_list'),
     path('setting', views.stock_setting, name='stock_setting' ),
+    path('setting/category', views.setting_category, name='setting_category'),
+    path('setting/category/new', views.category_new, name='category_new'),
 ]

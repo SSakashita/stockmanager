@@ -2,45 +2,9 @@
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
 {% block content %}
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-<p>テスト</p>
-
+{% for category in categorys %}
+<div>
+  {{ category.name }}
+</div>
+{% endfor %}
 {% endblock %}
