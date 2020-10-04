@@ -5,6 +5,7 @@ from django.utils import timezone
 
 
 class Category(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField('カテゴリ名', max_length=20,)
 
     def __str__(self):
@@ -12,6 +13,7 @@ class Category(models.Model):
 
 
 class Item(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField('品名', max_length=20)
     category = models.ForeignKey(Category, verbose_name='カテゴリ', on_delete=models.PROTECT)
     quantity = models.PositiveIntegerField('数量', default=1)

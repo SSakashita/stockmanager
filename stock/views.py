@@ -20,6 +20,8 @@ def items_new(request):
   if request.method == 'POST':
     form = AddItemForm(request.POST)
     if form.is_valid():
+      item = form.save(commit=False)
+      item.author = request.user
       item = form.save()
       return redirect('item_list')
   else:
@@ -67,6 +69,8 @@ def category_new(request):
   if request.method == 'POST':
     form = AddCategoryForm(request.POST)
     if form.is_valid():
+      category = form.save(commit=False)
+      category.author = request.user
       category = form.save()
       return redirect('setting_category')
   else:
