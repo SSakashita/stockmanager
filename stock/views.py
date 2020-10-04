@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django import forms
 from django.utils import timezone
 from django.http import HttpResponse
@@ -28,23 +28,6 @@ def items_new(request):
       form = AddItemForm()
   return render(request, 'stock/items_new.html', {'form': form})
 
-
-# @login_required
-# def items_new(request):
-#   AddItemsFormSet = forms.modelformset_factory(
-#     model=Item,
-#     fields={'name', 'category', 'quantity', 'price'},
-#     extra=2
-#     )
-#   if request.method == 'POST':
-#     formset = AddItemsFormSet(request.POST, queryset=Item.objects.none())
-#     if formset.is_valid():
-#       formset.save()
-#       data = [x.test for x in Item.objects.all()]
-#       return HttpResponse(repr(data))
-#   else:
-#     formset = AddItemsFormSet(queryset=Item.objects.none())
-#   return render(request, 'stock/items_new.html', {'formset': formset})
 
 
 @login_required
@@ -76,4 +59,10 @@ def category_new(request):
   else:
       form = AddCategoryForm()
   return render(request, 'stock/category_new.html', {'form': form})
+
+
+def category_remove(request, pk):
+  category = get_object_or_404(Category, pk=pk)
+  category.delete()
+  return redirect('setting_category')
 

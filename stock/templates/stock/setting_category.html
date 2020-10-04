@@ -17,7 +17,7 @@
         <i class="fas fa-ad"></i>
         <span>{{ category.name }}</span>
         <a href=""><i class="fas fa-pen"></i></a>
-        <a href=""><i class="fas fa-eraser"></i></a>
+        <a href="{% url 'category_remove' pk=category.pk %}"><i class="fas fa-eraser"></i></a>
     </div>
 
   {% endfor %}
