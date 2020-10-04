@@ -9,18 +9,20 @@
     <tr>
       <th>ID</th>
       <th>アイテム名</th>
+      <th>カテゴリ</th>
       <th>個数</th>
     </tr>
   </thead>
     <tbody>
-    {% for iten in items %}
-      <tr class="table-info">
-        <th scope="row">{{ item.id }}</th>
-        <td>{{item.name}}</td>
-      </tr>
-      <tr>
-        <td>{{ item.quantity }}</td>
-      </tr>
+    {% for item in items %}
+      <a href="#"><div>
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.category }}</td>
+          <td>{{ item.quantity }}</td>
+        </tr>
+      </div></a>
     {% endfor %}
     </tbody>
   </table>

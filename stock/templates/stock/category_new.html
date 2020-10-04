@@ -10,7 +10,13 @@
   <h1 class="mx-auto">カテゴリ追加</h1>
 </nav>
 
-
+<form method="POST">
+  <div class="form-group">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">保存</button>
+    </div>
+</form>
 
 
 </html>

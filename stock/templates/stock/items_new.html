@@ -3,71 +3,15 @@
 {% bootstrap_javascript jquery='full' %}
 {% block content %}
 <h1>アイテム登録</h1>
-<div>
-  <form method="post">
+
+<form method="POST" id="form">
     {% csrf_token %}
-    <div>
-      {{ formset }}
+    {{ form.management_form }}
+    <div class="text">
+        {{ form.empty_form.as_p }}
     </div>
-  <button type="submit">登録</button>
+    <button type="button" id="btn-clone">フォーム追加</button>
+    <button type="submit">保存</button>
 </form>
-</div>
-
-<!-- <form id="addItemsForm" action="" method="POST">
-  <hr>
-  {{ formset.managemant_form }}
-    <div class="">
-      {% for detail in formset %}
-        <div>{{ detail.as_table }}</div>
-    {% endfor %}
-    </div>
-    {% csrf_token %}
-    <button class="btn btn-primary" type="submit">保存</button>
-</form> -->
-
-{% block extrajs %}
-    <script>
-        jQuery(function ($) {
-            // 1. インラインフォームセットに含まれるフォームの数を取得（＝TOTAL_FORMSのvalueを取得）
-            var totalManageElement = $("input#id_jutyudetail_set-TOTAL_FORMS");
-            var currentJutyuDetailCount = parseInt(totalManageElement.val());
-
-            //「行を追加」ボタンが押されたときに
-            // ２．何番目かを表す数字を含んだidを付けて、各フィールドを追加する
-            $("button#addForm").on("click", function () {
-                // 部品
-                var partElement = $("<select>", {
-                    name: "jutyudetail_set-" + currentJutyuDetailCount + "-part",
-                    id: "id_jutyudetail_set-" + currentJutyuDetailCount + "-part",
-                });
-                partElement.append($("<option>").html("---------").val(""));
-                {% for part in part_list %}
-                    partElement.append($("<option>").html("{{ part }}").val("{{ part.pk }}"));
-                {% endfor %}
-                // 受注数量
-                var quantityElement = $("<input>", {
-                    type: "number",
-                    name: "jutyudetail_set-" + currentJutyuDetailCount + "-quantity",
-                    id: "id_jutyudetail_set-" + currentJutyuDetailCount + "-quantity",
-                });
-                // 削除
-                var deleteElement = $("<input>", {
-                    type: "checkbox",
-                    name: "jutyudetail_set-" + currentJutyuDetailCount + "-DELETE",
-                    id: "id_jutyudetail_set-" + currentJutyuDetailCount + "-DELETE",
-                });
-                // 追加
-                $(partElement).appendTo("div#detail-area");
-                $(quantityElement).appendTo("div#detail-area");
-                $(deleteElement).appendTo("div#detail-area");
-                $("<br>").appendTo("div#detail-area");
-
-                // 3. TOTAL_FORMSを1増やす
-                currentJutyuDetailCount += 1
-                $("input#id_jutyudetail_set-TOTAL_FORMS").attr("value", currentJutyuDetailCount);
-            });
-        });
-    </script>
-{% endblock extrajs %}
 
 {% endblock %}
