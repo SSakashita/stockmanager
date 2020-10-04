@@ -11,7 +11,7 @@ from .forms import AddCategoryForm, AddItemForm
 
 @login_required
 def index(request):
-  categorys = Category.objects.all()
+  categorys = Category.objects.filter(author=request.user)
   return render(request, 'stock/index.html', {'categorys':categorys})
 
 
@@ -49,7 +49,7 @@ def items_new(request):
 
 @login_required
 def item_list(request):
-  items = Item.objects.all()
+  items = Item.objects.filter(author=request.user)
   return render(request, 'stock/item_list.html',{'items': items})
 
 
@@ -60,7 +60,7 @@ def stock_setting(request):
 
 @login_required
 def setting_category(request):
-  categorys = Category.objects.all()
+  categorys = Category.objects.filter(author=request.user)
   return render(request, 'stock/setting_category.html',{'categorys': categorys})
 
 
