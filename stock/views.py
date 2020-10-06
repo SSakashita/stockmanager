@@ -5,8 +5,8 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 # from .forms import AddItemsFormSet
-from .models import Item, Category
-from .forms import AddCategoryForm, AddItemForm
+from .models import Item, Category, Photo
+from .forms import AddCategoryForm, AddItemForm, PhotoForm
 
 
 @login_required
@@ -17,16 +17,17 @@ def index(request):
 
 @login_required
 def items_new(request):
-  if request.method == 'POST':
-    form = AddItemForm(request.POST)
-    if form.is_valid():
-      item = form.save(commit=False)
-      item.author = request.user
-      item = form.save()
-      return redirect('item_list')
-  else:
-      form = AddItemForm()
-  return render(request, 'stock/items_new.html', {'form': form})
+  if request.method == 'GET':
+    return render(request, 'stock/items_new.html', {'form': PhotoForm(),})
+  elif request.method == 'POST':
+    form = PhotoForm(request.POST, request.FILES)
+    if not form.is_valid():
+      raise ValueError('invalid form')
+    photo = Photo()
+    photo.image = form.cleaned_data['image']
+    photo.save()
+    return redirect('item_list')
+
 
 
 

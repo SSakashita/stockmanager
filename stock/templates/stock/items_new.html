@@ -4,14 +4,10 @@
 {% block content %}
 <h1>アイテム登録</h1>
 
-<form method="POST" id="form">
+<form action="{% url 'items_new' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.management_form }}
-    <div class="text">
-        {{ form.empty_form.as_p }}
-    </div>
-    <button type="button" id="btn-clone">フォーム追加</button>
-    <button type="submit">保存</button>
+    {{ form }}
+    <input type="submit" name="保存">
 </form>
 
 {% endblock %}

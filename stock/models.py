@@ -24,3 +24,6 @@ class Item(models.Model):
     def __str__(self):
         return self.name
 
+
+class Photo(models.Model):
+    image = models.ImageField(upload_to='stock')

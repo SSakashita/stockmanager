@@ -16,3 +16,7 @@ class AddCategoryForm(forms.ModelForm):
   class Meta:
     model = Category
     fields = {'name',}
+
+
+class PhotoForm(forms.Form):
+    image = forms.ImageField()
