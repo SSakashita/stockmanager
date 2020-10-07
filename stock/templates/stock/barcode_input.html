@@ -1,0 +1,12 @@
+{% extends 'stock/base.html' %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% block content %}
+<h1>バーコード読取</h1>
+<form action="{% url 'barcode_input' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" name="読込">
+</form>
+<p>{{ number }}</p>
+{% endblock %}

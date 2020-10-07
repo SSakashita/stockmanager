@@ -9,4 +9,5 @@ urlpatterns = [
     path('setting/category', views.setting_category, name='setting_category'),
     path('setting/category/new', views.category_new, name='category_new'),
     path('setting/category/<pk>/remove/', views.category_remove, name='category_remove'),
+    path('items/new/barcodeinput', views.barcode_input, name='barcode_input'),
 ]

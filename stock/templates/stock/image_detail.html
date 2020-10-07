@@ -1,0 +1,10 @@
+{% extends 'stock/base.html' %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% block content %}
+<h1>保存した画像</h1>
+
+{% if photo.image %}
+<img src="/{{ photo.image.url }}" style="width:300px;height:auto">
+{% endif %}
+{% endblock %}

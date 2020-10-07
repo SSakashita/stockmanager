@@ -1,10 +1,13 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 from django import forms
 from django.utils import timezone
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
-# from .forms import AddItemsFormSet
+from pyzbar.pyzbar import decode
+from PIL import Image
+
+
 from .models import Item, Category, Photo
 from .forms import AddCategoryForm, AddItemForm, PhotoForm
 
@@ -27,8 +30,6 @@ def items_new(request):
     photo.image = form.cleaned_data['image']
     photo.save()
     return redirect('item_list')
-
-
 
 
 @login_required
@@ -66,4 +67,19 @@ def category_remove(request, pk):
   category = get_object_or_404(Category, pk=pk)
   category.delete()
   return redirect('setting_category')
+
+
+@login_required
+def barcode_input(request):
+  if request.method == 'GET':
+    return render(request, 'stock/barcode_input.html', {'form': PhotoForm(),})
+  elif request.method == 'POST':
+    form = PhotoForm(request.POST, request.FILES)
+    if not form.is_valid():
+      raise ValueError('invalid form')
+    photo = Photo()
+    photo.image = form.cleaned_data['image']
+    data = decode(Image.open(photo.image))
+    number = data[0][0].decode('utf-8', 'ignore')
+    return render_to_response('stock/barcode_input.html', {'number': number})
 
