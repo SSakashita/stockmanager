@@ -6,16 +6,12 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
 
 <nav class="navbar navbar-light bg-light">
-  <a href="{% url 'index' %}"><i class="fas fa-chevron-left"></i></a>
+  <a href="{{request.META.HTTP_REFERER}}"><i class="fas fa-chevron-left"></i></a>
   <h1 class="mx-auto">設定</h1>
 </nav>
 
 <table class="table">
   <tbody>
-    <tr class="">
-      <th scope="row">1</th>
-      <td><a href="{% url 'setting_category' %}">カテゴリ設定</a></td>
-    </tr>
     <tr class="">
       <th scope="row">2</th>
       <td>リマインド設定</td>

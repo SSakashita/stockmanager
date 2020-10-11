@@ -23,13 +23,17 @@ def index(request):
 @login_required
 def items_new(request):
   item_name_from_code = ''
-  if request.method == 'POST':
+  if request.method == 'GET':
+    item_form = AddItemForm(request.session.get('item_form_data'))
+    photo_form = PhotoForm()
+  elif request.method == 'POST':
     if 'item_form' in request.POST:
       item_form = AddItemForm(request.POST)
       if item_form.is_valid():
         item = item_form.save(commit=False)
         item.author = request.user
         item = item_form.save()
+        request.session['item_form_data'] = request.POST
         return redirect('item_list')
     elif 'photo_form' in request.POST:
       photo_form = PhotoForm(request.POST, request.FILES)
@@ -42,13 +46,17 @@ def items_new(request):
 
       keyword =  str(number)
       search_url = "https://search.rakuten.co.jp/search/mall/"
-      item_name_from_code = get_html(search_url, keyword)
+      item_info = get_html(search_url, keyword)
+      item_name_from_code = item_info['item_name']
+      item_price_from_code = item_info['price']
 
-      default_data = {'name': item_name_from_code}
+      default_data = {'name': item_name_from_code, 'price': item_price_from_code}
       item_form = AddItemForm(initial=default_data)
   else:
     item_form = AddItemForm()
     photo_form = PhotoForm()
+
+  context = {'item_form': item_form, 'photo_form': photo_form}
 
   return render(request, 'stock/items_new.html', {'item_form': item_form, 'photo_form': photo_form})
 
@@ -122,6 +130,8 @@ def get_html(url, keyword):
   html = response.text
   #htmlパーサー
   soup = BeautifulSoup(html,'html.parser')
+  prices = soup.select(' .important')
+  price = int(prices[1].text.replace('円', '').replace(',', ''))
   items = soup.select(' .searchresultitem')
   item_name_list = []
   item_name_contents_list = []
@@ -133,4 +143,4 @@ def get_html(url, keyword):
     text = 'Not Found'
   else:
     text = name_start_not[0]
-  return text
+  return {'item_name': text, 'price': price}
