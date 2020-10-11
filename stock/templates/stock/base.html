@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
-    <a class="navbar-brand" href="{% url 'index' %}">Stock Manager</a>
+  <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark p-5">
+    <a class="navbar-brand" href="{% url 'index' %}"><h1>Stock Manager</h1></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -43,11 +43,12 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
-</nav>
+  </nav>
 
-
-{% block content %}
-{% endblock %}
+  <div class="col">
+    {% block content %}
+    {% endblock %}
+  </div>
 </body>
 
 </html>
