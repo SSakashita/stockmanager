@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'stock.apps.StockConfig',
     'bootstrap4',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
