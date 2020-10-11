@@ -4,4 +4,4 @@ pyzbar
 PIL
 requests
 re
-collectstatic
+bootstrap4
