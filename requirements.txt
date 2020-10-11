@@ -1,2 +1,7 @@
 Django~=2.2.4
 beautifulsoup4
+pyzbar
+PIL
+requests
+re
+collectstatic
