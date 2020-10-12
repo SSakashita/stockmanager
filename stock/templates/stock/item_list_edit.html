@@ -1,0 +1,59 @@
+{% extends 'stock/base.html' %}
+{% bootstrap_css %}
+{% block content %}
+
+<h1>在庫リスト - 編集</h1>
+<a href="{% url 'item_list' %}"><button type="button" class="btn btn-success float-right m-1"><i class="fas fa-check"></i> 確定</button></a>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>アイテム名</th>
+      <th>カテゴリ</th>
+      <th>個数</th>
+      <th>価格</th>
+      <th>購入日</th>
+    </tr>
+  </thead>
+    <tbody>
+    {% for item in items %}
+      <a href="#"><div>
+        <tr>
+          <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.category }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.bought_date }}</td>
+          <td><a href="{% url 'item_list' %}"><i class="fas fa-pen m-2"></i></a>
+            <a href="#"><i class="fas fa-trash m-2" data-toggle="modal" data-target="#modal1"></i></a></td>
+        </tr>
+      </div></a>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- 削除確認モーダル -->
+  <div class="modal fade" id="modal1" tabindex="-1"
+      role="dialog" aria-labelledby="label1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="label1">確認画面</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          本当に削除しますか？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <a href="#"><button type="button" class="btn btn-primary">OK</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

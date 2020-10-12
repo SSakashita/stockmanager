@@ -66,6 +66,15 @@ def item_list(request):
   items = Item.objects.filter(author=request.user)
   return render(request, 'stock/item_list.html',{'items': items})
 
+@login_required
+def item_list_edit(request):
+  items = Item.objects.filter(author=request.user)
+  return render(request, 'stock/item_list_edit.html',{'items': items})
+
+@login_required
+def item_remove(request, pk):
+  remove_item = Item.get_object_or_404(Item, pk=pk)
+
 
 @login_required
 def stock_setting(request):

@@ -3,6 +3,9 @@
 {% block content %}
 
 <h1>在庫リスト</h1>
+<a href="{% url 'item_list_edit' %}"><button type="button" class="btn btn-primary float-right m-1"><i class="fas fa-pen"></i> 編集</button></a>
+<a href="{% url 'items_new' %}"><button type="button" class="btn btn-primary float-right m-1"><i class="fas fa-plus"></i> 追加</button></a>
+
 
 <table class="table">
   <thead>
