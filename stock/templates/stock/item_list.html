@@ -14,6 +14,8 @@
       <th>アイテム名</th>
       <th>カテゴリ</th>
       <th>個数</th>
+      <th>価格</th>
+      <th>購入日</th>
     </tr>
   </thead>
     <tbody>
@@ -24,6 +26,8 @@
           <td>{{ item.name }}</td>
           <td>{{ item.category }}</td>
           <td>{{ item.quantity }}</td>
+          <td>{{ item.price }}</td>
+          <td>{{ item.bought_date }}</td>
         </tr>
       </div></a>
     {% endfor %}
