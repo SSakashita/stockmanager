@@ -13,6 +13,35 @@ import re
 from .models import Item, Category, Photo
 from .forms import AddCategoryForm, AddItemForm, PhotoForm
 
+# 楽天APIの設定
+REQUEST_URL = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?"
+APP_ID = "1024919063741527422"
+
+
+# バーコードから商品情報を取得する関数
+def kick_rakten_api(barcode):
+    # パラメータの設定
+    r_params = {
+            "format"        : "json"
+          , "keyword"       : barcode
+          , "applicationId" : [APP_ID]
+          , "availability"  : 1
+          , "hits"          : 1
+          , "sort"          : "+itemPrice"
+          }
+    # Get
+    response = requests.get(REQUEST_URL, r_params)
+    # APIから返却された出力パラメーターを取得
+    result = response.json()
+
+    # 確認のために出力
+    # print(result)
+    item = result["Items"][0]["Item"]
+    item_name = item["itemName"]
+    item_price = item["itemPrice"]
+
+    return item
+
 
 @login_required
 def index(request):
@@ -136,10 +165,9 @@ def barcode_input(request):
 
 @login_required
 def search_code(request):
-  keyword = '4902102112109'
-  search_url = "https://search.rakuten.co.jp/search/mall/"
-  text = get_html(search_url, keyword)
-  return render(request, 'stock/search_code.html',{'text': text})
+  barcode = '4902102112109'
+  item = kick_rakten_api(barcode)
+  return render(request, 'stock/search_code.html',{'itemName': item['itemName'], 'itemPrice': item['itemPrice']})
 
 
 def get_html(url, keyword):
