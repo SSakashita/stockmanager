@@ -73,13 +73,9 @@ def items_new(request):
       data = decode(Image.open(photo.image))
       number = data[0][0].decode('utf-8', 'ignore')
 
-      keyword =  str(number)
-      search_url = "https://search.rakuten.co.jp/search/mall/"
-      item_info = get_html(search_url, keyword)
-      item_name_from_code = item_info['item_name']
-      item_price_from_code = item_info['price']
-
-      default_data = {'name': item_name_from_code, 'price': item_price_from_code}
+      barcode =  str(number)
+      item = kick_rakten_api(barcode)
+      default_data = {'name': item['itemName'], 'price': item['itemPrice']}
       item_form = AddItemForm(initial=default_data)
   else:
     item_form = AddItemForm()
