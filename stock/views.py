@@ -74,8 +74,11 @@ def items_new(request):
       number = data[0][0].decode('utf-8', 'ignore')
 
       barcode =  str(number)
-      item = kick_rakten_api(barcode)
-      default_data = {'name': item['itemName'], 'price': item['itemPrice']}
+      try:
+        item = kick_rakten_api(barcode)
+        default_data = {'name': item['itemName'], 'price': item['itemPrice']}
+      except IndexError:
+        default_data = {'name': '取得できませんでした'}
       item_form = AddItemForm(initial=default_data)
   else:
     item_form = AddItemForm()
