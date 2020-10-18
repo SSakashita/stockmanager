@@ -1,9 +1,18 @@
-.navbar-light .navbar-toggler {
-    border-color: rgba(0,0,0,0);
+// 大デバイス（デスクトップ, 1200px 未満）
+@media (min-width: 992px) {
+ .title {
+   font-size: 7.0rem;
+ }
 }
-
-.navbar-light .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30'
-  xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(51, 51, 51, 1)'
-  stroke-width='3' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+// 中デバイス（タブレット, 992px 未満）
+@media (max-width: 991.98px) {
+ .title {
+   font-size: 4.0rem;
+ }
+}
+// 小デバイス（横向きモバイル, 768px 未満）
+@media (max-width: 767.98px) {
+ .title {
+   font-size: 5.0rem;
+ }
 }
