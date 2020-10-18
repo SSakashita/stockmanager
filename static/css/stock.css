@@ -1,18 +1,18 @@
 // 大デバイス（デスクトップ, 1200px 未満）
 @media (min-width: 992px) {
- .title {
+ .responsive {
    font-size: 7.0rem;
  }
 }
 // 中デバイス（タブレット, 992px 未満）
 @media (max-width: 991.98px) {
- .title {
+ .responsive {
    font-size: 4.0rem;
  }
 }
 // 小デバイス（横向きモバイル, 768px 未満）
 @media (max-width: 767.98px) {
- .title {
-   font-size: 5.0rem;
+ .responsive {
+   font-size: 10.0rem;
  }
 }
