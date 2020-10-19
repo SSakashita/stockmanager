@@ -10,31 +10,31 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark p-5">
-    <a class="navbar-brand" href="{% url 'index' %}"><h1>Stock Manager</h1></a>
+  <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'index' %}"><h1 class="display-3 m-5">Stock Manager</h1></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon display-4 m-5"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'items_new' %}">入庫</a>
+          <a class="nav-link" href="{% url 'items_new' %}"><p class="display-4 m-4">入庫</p></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'barcode_input' %}">バーコード読取</a>
+          <a class="nav-link" href="{% url 'barcode_input' %}"><p class="display-4 m-4">バーコード読取</p></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'search_code' %}">バーコード検索</a>
+          <a class="nav-link" href="{% url 'search_code' %}"><p class="display-4 m-4">バーコード検索</p></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'item_list' %}">在庫リスト</a>
+          <a class="nav-link" href="{% url 'item_list' %}"><p class="display-4 m-4">在庫リスト</p></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'stock_setting' %}">設定</a>
+          <a class="nav-link" href="{% url 'stock_setting' %}"><p class="display-4 m-4">設定</p></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">ログアウト</a>
+          <a class="nav-link" href="{% url 'logout' %}"><p class="display-4 m-4">ログアウト</p></a>
         </li>
       </ul>
     </div>

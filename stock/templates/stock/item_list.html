@@ -7,10 +7,10 @@
 <a href="{% url 'items_new' %}"><button type="button" class="btn btn-primary float-right m-1"><i class="fas fa-plus"></i> 追加</button></a>
 
 
-<table class="table">
+<table class="table" style="font-size: 27px">
   <thead>
     <tr>
-      <th>ID</th>
+      <!-- <th>ID</th> -->
       <th>アイテム名</th>
       <th>カテゴリ</th>
       <th>個数</th>
@@ -22,7 +22,7 @@
     {% for item in items %}
       <a href="#"><div>
         <tr>
-          <td>{{ item.id }}</td>
+          <!-- <td>{{ item.id }}</td> -->
           <td>{{ item.name }}</td>
           <td>{{ item.category }}</td>
           <td>{{ item.quantity }}</td>
