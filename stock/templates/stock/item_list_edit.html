@@ -2,13 +2,13 @@
 {% bootstrap_css %}
 {% block content %}
 
-<h1>在庫リスト - 編集</h1>
-<a href="{% url 'item_list' %}"><button type="button" class="btn btn-success float-right m-1"><i class="fas fa-check"></i> 確定</button></a>
+<h1 class="display-3 m-5">在庫リスト - 編集</h1>
+<a href="{% url 'item_list' %}"><button type="button" class="btn btn-success float-right m-2 p-3"><h2><i class="fas fa-check"></i> 確定</button></h2></a>
 
-<table class="table">
+<table class="table" style="font-size: 27px">
   <thead>
     <tr>
-      <th>ID</th>
+      <!-- <th>ID</th> -->
       <th>アイテム名</th>
       <th>カテゴリ</th>
       <th>個数</th>
@@ -20,7 +20,7 @@
     {% for item in items %}
       <div>
         <tr>
-          <td>{{ item.id }}</td>
+          <!-- <td>{{ item.id }}</td> -->
           <td>{{ item.name }}</td>
           <td>{{ item.category }}</td>
           <td>{{ item.quantity }}</td>
