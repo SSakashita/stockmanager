@@ -94,10 +94,30 @@ def item_list(request):
   items = Item.objects.filter(author=request.user)
   return render(request, 'stock/item_list.html',{'items': items})
 
+
+@login_required
+def item_detail(request, pk):
+  item = get_object_or_404(Item, pk=pk)
+  return render(request, 'stock/item_detail.html', {'item': item})
+
+
 @login_required
 def item_list_edit(request):
   items = Item.objects.filter(author=request.user)
   return render(request, 'stock/item_list_edit.html',{'items': items})
+
+@login_required
+def item_edit(request, pk):
+  item = get_object_or_404(Item, pk=pk)
+  if request.method == "POST":
+    form = AddItemForm(request.POST, instance=item)
+    if form.is_valid():
+      item = form.save(commit=False)
+      item.save()
+      return redirect('item_list_edit')
+  else:
+    form = AddItemForm(instance=item)
+  return render(request, 'stock/item_edit.html', {'form': form})
 
 
 @login_required

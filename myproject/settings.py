@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'stock.apps.StockConfig',
     'bootstrap4',
     'widget_tweaks',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +135,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_URL = 'login' # ログインしていないときのリダイレクト先
 LOGIN_REDIRECT_URL = 'index' # ログイン後のリダイレクト先
 LOGOUT_REDIRECT_URL = 'index' # ログアウト後のリダイレクト先
+
+# django.contrib.humanize tmplateでカンマ区切り
+NUMBER_GROUPING = 3

@@ -1,9 +1,8 @@
 {% extends 'stock/base.html' %}
 {% bootstrap_css %}
 {% block content %}
-
+{% load humanize %}
 <h1 class="display-3 m-5">在庫リスト</h1>
-<a href="{% url 'item_list_edit' %}"><button type="button" class="btn btn-primary float-right m-2 p-3"><h2><i class="fas fa-pen"></i> 編集</h2></button></a>
 <a href="{% url 'items_new' %}"><button type="button" class="btn btn-primary float-right m-2 p-3"><h2><i class="fas fa-plus"></i> 追加</h2></button></a>
 
 <table class="table" style="font-size: 27px">
@@ -20,16 +19,15 @@
   </thead>
     <tbody>
     {% for item in items %}
-      <a href="#"><div>
         <tr>
           <!-- <td>{{ item.id }}</td> -->
-          <td>{{ item.name }}</td>
+            <td><a href="{% url 'item_detail' pk=item.pk %}">{{ item.name }}</a></td>
           <td>{{ item.category }}</td>
-          <td>{{ item.quantity }}</td>
-          <td>{{ item.price }}</td>
-          <td>{{ item.bought_date }}</td>
+          <td class="text-right">{{ item.quantity }}</td>
+          <td class="text-right">{{ item.price | intcomma }}</td>
+          <td  class="text-right">{{ item.bought_date | date:"Y/m/d"}}</td>
+          <td>　　　</td>
         </tr>
-      </div></a>
     {% endfor %}
     </tbody>
   </table>
