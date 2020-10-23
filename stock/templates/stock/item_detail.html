@@ -11,7 +11,7 @@
 <nav class="navbar navbar-light bg-light">
   <a href="{% url 'item_list' %}"><i class="fas fa-chevron-left display-3 m-4"></i></a>
   <h1 class="mx-auto display-3 m-4">アイテム詳細</h1>
-  <a href="#"><i class="fas fa-pen display-3 m-4"></i></a>
+  <a href="{% url 'item_edit' pk=item.pk %}"><i class="fas fa-pen display-3 m-4"></i></a>
 </nav>
 
 <div class="m-5">
