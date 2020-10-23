@@ -2,34 +2,39 @@
 {% bootstrap_css %}
 {% block content %}
 {% load humanize %}
-<h1 class="display-3 m-5">在庫リスト</h1>
-<a href="{% url 'items_new' %}"><button type="button" class="btn btn-primary float-right m-2 p-3"><h2><i class="fas fa-plus"></i> 追加</h2></button></a>
 
-<table class="table" style="font-size: 27px">
-  <thead>
-    <tr>
-      <!-- <th>ID</th> -->
-      <th>アイテム名</th>
-      <th>カテゴリ</th>
-      <th>個数</th>
-      <th>価格</th>
-      <th>購入日</th>
-      <th></th>
-    </tr>
-  </thead>
-    <tbody>
-    {% for item in items %}
-        <tr>
-          <!-- <td>{{ item.id }}</td> -->
-            <td><a href="{% url 'item_detail' pk=item.pk %}">{{ item.name }}</a></td>
-          <td>{{ item.category }}</td>
-          <td class="text-right">{{ item.quantity }}</td>
-          <td class="text-right">{{ item.price | intcomma }}</td>
-          <td  class="text-right">{{ item.bought_date | date:"Y/m/d"}}</td>
-          <td>　　　</td>
-        </tr>
-    {% endfor %}
-    </tbody>
+<div class="sticky-top pt-5 mt-5 bg-white">
+  <h1 class="display-3 m-3 pt-5">在庫リスト</h1>
+  <a href="{% url 'items_new' %}"><button type="button" class="btn btn-primary float-right m-2 p-3"><h2><i class="fas fa-plus"></i> 追加</h2></button></a>
+  <table class="table" style="font-size: 27px">
+    <thead>
+      <tr>
+        <!-- <th>ID</th> -->
+        <th>アイテム名</th>
+        <th>カテゴリ</th>
+        <th>個数</th>
+        <th>価格</th>
+        <th>購入日</th>
+        <th></th>
+      </tr>
+    </thead>
   </table>
+</div>
+<table class="table" style="font-size: 27px">
+  <tbody>
+  {% for item in items %}
+      <tr>
+        <!-- <td>{{ item.id }}</td> -->
+          <td><a href="{% url 'item_detail' pk=item.pk %}">{{ item.name }}</a></td>
+        <td>{{ item.category }}</td>
+        <td class="text-right">{{ item.quantity }}</td>
+        <td class="text-right">{{ item.price | intcomma }}</td>
+        <td  class="text-right">{{ item.bought_date | date:"Y/m/d"}}</td>
+        <td>　　　</td>
+      </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
 
 {% endblock %}
