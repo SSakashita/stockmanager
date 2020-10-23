@@ -15,7 +15,6 @@
         <th>個数</th>
         <th>価格</th>
         <th>購入日</th>
-        <th></th>
       </tr>
     </thead>
   </table>
@@ -30,7 +29,6 @@
         <td class="text-right">{{ item.quantity }}</td>
         <td class="text-right">{{ item.price | intcomma }}</td>
         <td  class="text-right">{{ item.bought_date | date:"Y/m/d"}}</td>
-        <td>　　　</td>
       </tr>
   {% endfor %}
   </tbody>
