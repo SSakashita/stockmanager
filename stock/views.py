@@ -49,9 +49,12 @@ def kick_rakten_api(barcode):
 
 
 # グラフを作成
-def create_graph(x_list, y_list):
+def create_graph(x_label, x_list, y_label, y_list):
   plt.cla()
-  plt.plot(x_list, y_list)
+  plt.bar(x_list, y_list)
+  ax = plt.subplot()
+  ax.set_xlabel(x_label)
+  ax.set_ylabel(y_label)
   buffer = io.BytesIO()
   plt.savefig(buffer, format='png')
   image_png = buffer.getvalue()
@@ -61,13 +64,12 @@ def create_graph(x_list, y_list):
   return graph
 
 
-
 @login_required
 def index(request):
   items = Item.objects.filter(author=request.user)
   bought_date_list = [item.bought_date for item in items]
   price_list = [item.price for item in items]
-  graph = create_graph(bought_date_list, price_list)
+  graph = create_graph('Bought_date',  bought_date_list, 'Price', price_list)
   return render(request, 'stock/index.html', {'graph': graph})
 
 
@@ -196,12 +198,6 @@ def barcode_input(request):
     search_url = "https://search.rakuten.co.jp/search/mall/"
     item_name = get_html(search_url, keyword)
     return render_to_response('stock/barcode_input.html', {'number': number, 'item_name': item_name})
-
-@login_required
-def search_code(request):
-  barcode = '4902102112109'
-  item = kick_rakten_api(barcode)
-  return render(request, 'stock/search_code.html',{'itemName': item['itemName'], 'itemPrice': item['itemPrice']})
 
 
 def get_html(url, keyword):
