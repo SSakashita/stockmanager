@@ -7,6 +7,11 @@ from django.contrib.auth.decorators import login_required
 from pyzbar.pyzbar import decode
 from PIL import Image
 from bs4 import BeautifulSoup
+import matplotlib
+matplotlib.use('Agg') #バックエンドを指定
+import matplotlib.pyplot as plt
+import base64
+import io
 import requests
 import re
 
@@ -43,10 +48,27 @@ def kick_rakten_api(barcode):
     return item
 
 
+# グラフを作成
+def create_graph(x_list, y_list):
+  plt.cla()
+  plt.plot(x_list, y_list)
+  buffer = io.BytesIO()
+  plt.savefig(buffer, format='png')
+  image_png = buffer.getvalue()
+  graph = base64.b64encode(image_png)
+  graph = graph.decode('utf-8')
+  buffer.close()
+  return graph
+
+
+
 @login_required
 def index(request):
-  categorys = Category.objects.filter(author=request.user)
-  return render(request, 'stock/index.html', {'categorys':categorys})
+  items = Item.objects.filter(author=request.user)
+  bought_date_list = [item.bought_date for item in items]
+  price_list = [item.price for item in items]
+  graph = create_graph(bought_date_list, price_list)
+  return render(request, 'stock/index.html', {'graph': graph})
 
 
 @login_required
@@ -89,13 +111,11 @@ def items_new(request):
   return render(request, 'stock/items_new.html', {'item_form': item_form, 'photo_form': photo_form})
 
 
-@login_required
 def item_list(request):
   items = Item.objects.filter(author=request.user)
   return render(request, 'stock/item_list.html',{'items': items})
 
 
-@login_required
 def item_detail(request, pk):
   item = get_object_or_404(Item, pk=pk)
   return render(request, 'stock/item_detail.html', {'item': item})

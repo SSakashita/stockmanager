@@ -2,9 +2,8 @@
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
 {% block content %}
-{% for category in categorys %}
-<div>
-  {{ category.name }}
+<div class="pt-5 mt-5" >
+	<img src="data:image/png;base64, {{ graph | safe }} " alt="">
 </div>
-{% endfor %}
+
 {% endblock %}

@@ -3,39 +3,40 @@
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
 {% block content %}
-<h1 class="display-3 m-5">アイテム登録</h1>
+<div class="mt-5 pt-5">
+  <h1 class="display-3 m-5 pt-5">アイテム登録</h1>
 
-<div class="btn-group">
-  <button type="button" class="btn btn-secondary"><h1 class="p-1 mx-4"><i class="fas fa-barcode"> barcode</h1></i></button>
-  <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <span class="sr-only">Toggle Dropdown</span>
-  </button>
-  <div class="dropdown-menu">
-    <div class="dropdown-item">
-      <form action="{% url 'items_new' %}" method="POST" name="photo_form" enctype="multipart/form-data">
-          <h2 class="my-4">
-            {% csrf_token %}
-            {{ photo_form }}
-            <input type="submit" name="photo_form">
-          </h2>
-      </form>
+  <div class="btn-group">
+    <button type="button" class="btn btn-secondary"><h1 class="p-1 mx-4"><i class="fas fa-barcode"> barcode</h1></i></button>
+    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <div class="dropdown-menu">
+      <div class="dropdown-item">
+        <form action="{% url 'items_new' %}" method="POST" name="photo_form" enctype="multipart/form-data">
+            <h2 class="my-4">
+              {% csrf_token %}
+              {{ photo_form }}
+              <input type="submit" name="photo_form">
+            </h2>
+        </form>
+      </div>
     </div>
   </div>
+    <a href="{% url 'setting_category' %}"><button type="button" class="btn btn-secondary"><h1 class="p-1 mx-4 ">Add Category</h1></button></a>
+  <br>
+  <br>
+
+  <form action="{% url 'items_new' %}" method="POST" name="item_form" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% for field in item_form %}
+        <h1 class="p-5 display-4">
+          {{ field.label_tag }}
+          {% render_field field %}
+        </h1>
+      {% endfor %}
+       <button type="submit" class="btn btn-success btn-lg btn-block my-5 " name="item_form"><p class="display-4 p-2">保存</p></button>
+  </form>
 </div>
-  <a href="{% url 'setting_category' %}"><button type="button" class="btn btn-secondary"><h1 class="p-1 mx-4 ">Add Category</h1></button></a>
-<br>
-<br>
-
-<form action="{% url 'items_new' %}" method="POST" name="item_form" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% for field in item_form %}
-      <h1 class="p-5 display-4">
-        {{ field.label_tag }}
-        {% render_field field %}
-      </h1>
-    {% endfor %}
-     <button type="submit" class="btn btn-success btn-lg btn-block my-5 " name="item_form"><p class="display-4 p-2">保存</p></button>
-</form>
-
 
 {% endblock %}
