@@ -1,4 +1,5 @@
 {% bootstrap_css %}
+{% load static %}
 {% bootstrap_javascript jquery='full' %}
 <!DOCTYPE html>
 <html>
@@ -13,10 +14,33 @@
   <h1 class="display-3">ABOUT APPS</h1>
   <p class="lead">Stock Manager とは？</p>
   <hr class="my-2">
-  <p>ここにアプリの紹介を書くここにアプリの紹介を書くここにアプリの紹介を書くここにアプリの紹介を書くここにアプリの紹介を書くここにアプリの紹介を書くここにアプリの紹介を書くここにアプリの紹介を書くここにアプリの紹介を書くここにアプリの紹介を書くここにアプリの紹介を書くここにアプリの紹介を書くここにアプリの紹介を書くここにアプリの紹介を書くここにアプリの紹介を書く</p>
+  <p>備消耗品在庫管理アプリです。バーコードを読み取って備消耗品を入庫することができます。何を、いつ、いくらで何個買ったかを記録できます。将来的には同じアイテムの購入頻度から消耗速度の予測を行い、なくなる直前に通知が来る機能を実装予定です。</p>
   <p class="lead">
     <a class="btn btn-primary btn-lg" href="{% url 'login' %}" role="button">アカウント登録</a>
   </p>
+</div>
+<div class="m-5 media">
+  <img src="/media/barcode_reading.jpg" class="img-responsive" width=30%>
+  <div class="media-body m-3">
+    <h1 class="mt-0">バーコードから入庫</h1>
+    <p>商品についているバーコードを読み取ると、楽天APIから商品情報を取得し自動で入力。もちろん、手入力も可能です。</p>
+    <img src="/media/rakuten_dev_api.png" class="m-3" width=80%>
+  </div>
+</div>
+<div class="m-5 media">
+  <img src="/media/list.jpg" class="img-responsive" width=30%>
+  <div class="media-body m-3">
+    <h1 class="mt-0">アイテムをリスト管理</h1>
+    <p>何を・いつ・何個買ったか確認できます。</p>
+  </div>
+</div>
+<div class="m-5 media">
+  <img src="/media/analytics.jpg" class="img-responsive" width=30%>
+  <div class="media-body m-3">
+    <h1 class="mt-0">(予定)在庫消費予測</h1>
+    <p>購入頻度から在庫滞留状況を予測。補充のタイミングでリマインドを受け取ることができます。</p>
+    <p>　※未実装</p>
+  </div>
 </div>
 
 </body>
